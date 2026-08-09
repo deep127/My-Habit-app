@@ -1,202 +1,146 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#f7f1e7">
 <link rel="manifest" href="manifest.webmanifest">
-<title>Little Habits 🌱</title>
+<title>Little Habits</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Nunito:wght@600;700;800&display=swap');
 :root{
- --bg:#f7f1e7;--card:#fffdf8;--ink:#292923;--muted:#8c8a80;--green:#7d9772;
- --green2:#aabd98;--cream:#f4ead6;--pink:#f5d0d1;--lav:#e8d7e9;--yellow:#f6df9f;
- --line:#e7dfd2;--shadow:0 8px 25px rgba(66,58,43,.06);
+ --bg:#f7f1e7;--card:#fffdf8;--ink:#292a25;--muted:#8a8b82;--green:#819b78;
+ --green2:#a9bf9a;--cream:#f0eadf;--pink:#f3c9cb;--yellow:#f8df9c;--lav:#e6d5e8;
+ --line:#e5ded2;--shadow:0 8px 25px rgba(80,65,45,.06);--radius:28px;
 }
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif}
-button,input,textarea,select{font:inherit} button{cursor:pointer;border:0}
-.app{max-width:720px;margin:auto;padding-bottom:105px}
-header{padding:20px 22px 10px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-weight:900;font-size:29px;letter-spacing:-1.5px}.logo span{color:var(--green)}
-.icon-btn{width:48px;height:48px;border-radius:50%;background:var(--card);border:1px solid var(--line);font-size:23px}
-.view{display:none;padding:0 22px}.view.active{display:block}
-.hero{background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:var(--shadow)}
-.hero-art{height:270px;background:#f5f0e7;position:relative;display:flex;align-items:flex-end;justify-content:center;overflow:hidden}
-.hero-art .artist{width:220px;height:235px}.hero-art .cat{position:absolute;right:60px;bottom:28px;width:80px}.hero-art .plant{position:absolute;left:45px;bottom:22px;width:90px}
-.hero-copy{padding:28px}.hello{font-size:16px}.name{font-size:34px;font-weight:850;margin:3px 0 4px}.sub{color:#77756c;font-size:17px}
-.progress-strip{background:var(--green);color:#fff;padding:18px 28px}.progress-row{display:flex;justify-content:space-between;font-weight:800;font-size:18px}.bar{height:12px;background:#d5ddcf;border-radius:99px;overflow:hidden;margin-top:12px}.fill{height:100%;background:#f8d99c;border-radius:99px;transition:.3s}
-.section-title{display:flex;align-items:center;justify-content:space-between;margin:28px 0 12px;font-size:20px;font-weight:850}
-.primary{background:var(--green);color:#fff;border-radius:24px;padding:12px 18px;font-weight:800}
-.habit{background:var(--card);border-bottom:1px solid var(--line);padding:15px 8px;display:flex;align-items:center;gap:14px}
-.habit:first-child{border-radius:22px 22px 0 0}.habit:last-child{border-radius:0 0 22px 22px;border-bottom:0}
-.habit-icon{width:58px;height:58px;border-radius:18px;background:#f1ece2;display:grid;place-items:center;flex:none}.habit-icon svg{width:38px;height:38px}
-.habit-main{flex:1}.habit-name{font-size:20px;font-weight:850}.habit-desc{color:#96938a;font-size:14px}.streak{color:#74766e;text-align:right;font-size:14px}.check{width:48px;height:48px;border-radius:50%;background:#f6f2ea;border:2px solid #8a8984;font-size:20px}.check.done{background:var(--green);border-color:var(--green);color:#fff}
-.card{background:var(--card);border:1px solid var(--line);border-radius:28px;padding:24px;box-shadow:var(--shadow);margin-top:18px}
-.garden-preview{height:280px;border-radius:22px;overflow:hidden;position:relative;background:#dfead9}
-.garden-sky{height:52%;background:#e6f0df}.garden-ground{position:absolute;bottom:0;width:100%;height:54%;background:#a9bd94}.soil{position:absolute;bottom:28px;left:9%;width:82%;height:120px;background:#839b70;border-radius:50%}
-.garden-cat{position:absolute;right:12%;bottom:45px;width:90px}.sprout{position:absolute;left:12%;bottom:52px;width:90px}
-.sun{position:absolute;left:50px;top:25px;width:55px}
-.garden-actions{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px}.garden-actions button{background:#fff;border:2px solid #777;border-radius:20px;padding:14px 6px;font-weight:750}
-.reward{padding:10px 0;border-bottom:1px solid var(--line)}.reward:last-child{border:0}
-.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{padding:18px 10px;border-radius:22px;text-align:center}.stat:nth-child(1){background:var(--pink)}.stat:nth-child(2){background:var(--yellow)}.stat:nth-child(3){background:var(--lav)}.stat b{display:block;font-size:30px}
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:10px;align-items:end;height:220px;margin-top:20px}.daybar{height:100%;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:8px}.barcol{width:30px;max-width:75%;background:var(--green);border-radius:12px 12px 4px 4px;min-height:8px}
-.chart-row{display:grid;grid-template-columns:130px 1fr 35px;gap:10px;align-items:center;margin:14px 0}.mini-bar{height:10px;background:#ece7dc;border-radius:99px;overflow:hidden}.mini-bar i{display:block;height:100%;background:var(--green);border-radius:99px}
-.quote{background:var(--lav);min-height:430px;display:flex;flex-direction:column;justify-content:space-between}.quote-text{font-size:33px;line-height:1.2;font-weight:850;margin-top:80px}.quote-art{text-align:right}.quote-art svg{width:180px}
-.calendar-head{display:flex;justify-content:space-between;align-items:center}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:18px}.cal-cell{aspect-ratio:1;border-radius:14px;background:#f4efe5;display:grid;place-items:center;position:relative}.cal-cell.today{outline:2px solid var(--green)}.cal-cell.has{background:#dce8d5}.dot{width:6px;height:6px;border-radius:50%;background:var(--green);position:absolute;bottom:6px}.journal{margin-top:18px}.journal textarea{width:100%;min-height:150px;border:1px solid var(--line);border-radius:20px;padding:16px;background:#fffdf8;resize:vertical;outline:none}
-.more-list{background:var(--card);border-radius:25px;overflow:hidden;border:1px solid var(--line)}.more-item{padding:18px 20px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.more-item:last-child{border:0}.profile{display:flex;gap:18px;align-items:center}.avatar{width:78px;height:78px;background:#e6f0df;border-radius:50%;display:grid;place-items:center}.avatar svg{width:65px}
-.bottom{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);width:min(680px,calc(100% - 34px));background:rgba(255,253,248,.95);backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:28px;padding:8px;display:grid;grid-template-columns:repeat(6,1fr);z-index:20;box-shadow:0 10px 35px rgba(60,50,40,.12)}
-.nav{background:transparent;color:#7c7b74;padding:7px 2px;border-radius:20px;font-size:12px}.nav.active{background:#edf0e8;color:#42523d;font-weight:800}.nav svg{display:block;margin:auto auto 3px;width:22px;height:22px}
-.modal{position:fixed;inset:0;background:rgba(35,33,27,.45);display:none;align-items:flex-end;justify-content:center;z-index:50}.modal.show{display:flex}.sheet{background:var(--card);width:min(720px,100%);border-radius:30px 30px 0 0;padding:24px;max-height:88vh;overflow:auto}.close{float:right;border-radius:50%;width:40px;height:40px;background:#f0ebe2}.shop-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}.shop-item{border:1px solid var(--line);border-radius:22px;padding:18px;background:#fff}.shop-item svg{width:80px;height:70px;display:block;margin:auto}
-.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%) translateY(20px);background:#2f332d;color:#fff;padding:13px 18px;border-radius:18px;opacity:0;pointer-events:none;transition:.25s;z-index:70}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-@media(max-width:520px){.hero-art{height:230px}.hero-art .artist{width:185px;height:205px}.hero-art .cat{right:35px;width:65px}.hero-art .plant{left:20px;width:75px}.quote-text{font-size:29px}.chart-row{grid-template-columns:110px 1fr 30px}.bottom{width:calc(100% - 20px)}}
+*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",sans-serif}
+button,input,textarea{font:inherit} button{cursor:pointer;border:0}
+.app{max-width:760px;margin:auto;padding-bottom:96px}
+.top{padding:24px 20px 12px;display:flex;align-items:center;justify-content:space-between}
+.logo{font:800 28px Nunito}.logo span{color:#71966c}.leaf{color:#8fbd38}
+.bell{width:48px;height:48px;border:1px solid var(--line);background:var(--card);border-radius:50%;font-size:22px;box-shadow:var(--shadow)}
+.page{display:none;padding:10px 18px}.page.active{display:block}
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin:14px 0}
+.hero-art{height:245px;background:#f4efe6;position:relative;overflow:hidden}
+.hero-art .plant{position:absolute;left:9%;bottom:35px}
+.hero-art .girl{position:absolute;left:34%;bottom:-5px}
+.hero-art .cat{position:absolute;right:12%;bottom:30px}
+.greeting{padding:26px 28px 30px}.eyebrow{font-size:17px}.greeting h1{font:800 40px Nunito;margin:4px 0}.greeting p{margin:0;color:var(--muted);font-size:18px}
+.progress-strip{background:var(--green);color:white;padding:20px 28px}.progress-row{display:flex;justify-content:space-between;font-weight:700;font-size:19px}.bar{height:12px;background:#d8dfd2;border-radius:20px;overflow:hidden;margin-top:12px}.bar i{display:block;height:100%;background:#f8d994;border-radius:20px;width:0;transition:.3s}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:28px 2px 12px}.section-title h2{font:800 27px Nunito;margin:0}.add{background:var(--green);color:#fff;border-radius:22px;padding:12px 18px;font-weight:700}
+.habit-list{background:var(--card);border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.habit{display:flex;align-items:center;gap:15px;padding:18px 14px;border-bottom:1px solid var(--line)}.habit:last-child{border:0}
+.hicon{width:64px;height:64px;border-radius:20px;background:#f1ecdf;display:grid;place-items:center;flex:none}
+.hicon svg{width:40px;height:40px}.habit-main{flex:1}.habit-main b{font:800 22px Nunito;display:block}.habit-main small{color:var(--muted);font-size:15px}.streak{text-align:right;color:var(--muted);min-width:62px}.streak strong{display:block;color:#70756c}.check{width:48px;height:48px;border-radius:50%;background:transparent;border:3px solid #9a9b94;color:#555;font-size:25px}.check.done{background:var(--green);border-color:var(--green);color:#fff}
+.mini-garden{padding:20px}.garden-scene{height:210px;border-radius:24px;background:#dfead8;position:relative;overflow:hidden}.sky{position:absolute;inset:0 0 42%}.ground{position:absolute;bottom:0;left:0;right:0;height:46%;background:#a8bd92}.soil{position:absolute;width:72%;height:70px;background:#819b72;border-radius:50%;bottom:16px;left:14%}
+.garden-caption{font-size:18px;color:var(--muted);padding:14px 4px 0}
+.sun{position:absolute;left:9%;top:20px}.sun circle{fill:#f8b51c}.plant-svg{position:absolute;left:20%;bottom:32px}.cat-svg{position:absolute;right:12%;bottom:25px}
+.bottom{position:fixed;z-index:20;left:50%;transform:translateX(-50%);bottom:12px;width:min(720px,calc(100% - 28px));background:rgba(255,253,248,.96);border:1px solid var(--line);box-shadow:0 8px 35px rgba(60,50,40,.12);border-radius:30px;display:grid;grid-template-columns:repeat(6,1fr);padding:7px}
+.nav{background:transparent;color:#777;padding:9px 2px;border-radius:22px;font-size:12px}.nav.active{background:#eef3e9;color:#4f604d;font-weight:700}.nav svg{display:block;margin:auto auto 4px;width:21px;height:21px}
+.panel{padding:24px}.panel h2{font:800 31px Nunito;margin:0 0 18px}.stat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.stat{padding:18px;border-radius:20px;text-align:center}.stat b{font:800 30px Nunito;display:block}.pink{background:var(--pink)}.yellow{background:var(--yellow)}.lav{background:var(--lav)}
+.quote{background:#e7d6e9;padding:28px;border-radius:28px;min-height:310px;display:flex;flex-direction:column;justify-content:space-between}.quote p{font:800 31px Nunito;line-height:1.2;margin:35px 0}.save{background:var(--green);color:#fff;padding:14px;border-radius:22px;font-weight:700}
+.chart{padding:25px}.donut{width:190px;height:190px;border-radius:50%;margin:15px auto;background:conic-gradient(var(--green) 0 72%,#f4d98e 72% 88%,#f2b7bd 88% 100%);display:grid;place-items:center}.donut:after{content:"72%";width:120px;height:120px;border-radius:50%;background:var(--card);display:grid;place-items:center;font:800 30px Nunito}
+.bar-row{display:grid;grid-template-columns:110px 1fr 48px;align-items:center;gap:8px;margin:15px 0}.bar-bg{height:10px;background:#eee8dd;border-radius:10px}.bar-bg i{display:block;height:100%;background:var(--green);border-radius:10px}
+.week{height:210px;display:flex;align-items:end;gap:13px;padding:20px 5px 0}.daybar{flex:1;text-align:center;color:var(--muted);font-size:12px}.daybar i{display:block;background:var(--green);width:24px;margin:auto;border-radius:12px 12px 3px 3px;min-height:4px}
+.calendar{padding:18px}.cal-head{display:flex;justify-content:space-between;align-items:center}.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;margin-top:14px}.cal-grid button{background:transparent;padding:11px 0;border-radius:15px}.cal-grid button.selected{background:var(--green);color:#fff}.cal-grid .has{box-shadow:inset 0 -3px #f0b0b8}.note{margin-top:18px}.note textarea{width:100%;min-height:130px;border:1px solid var(--line);border-radius:20px;background:#fbf8f0;padding:16px;resize:vertical}
+.garden-big{padding:20px}.level-row{display:flex;justify-content:space-between;font-weight:700}.garden-actions{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:14px}.garden-actions button{padding:13px 4px;border:1px solid var(--line);background:#fbf8f0;border-radius:18px}.shop-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.shop-item{padding:15px;border:1px solid var(--line);border-radius:20px;text-align:center;background:#fbf8f0}.shop-item button{background:var(--green);color:white;border-radius:15px;padding:8px 10px;margin-top:8px}
+.more-row{display:flex;justify-content:space-between;align-items:center;padding:18px 4px;border-bottom:1px solid var(--line);font-size:17px}.profile{display:flex;gap:18px;align-items:center;padding:22px}.avatar{width:72px;height:72px;border-radius:50%;background:#e1eddc;display:grid;place-items:center}
+.modal{position:fixed;inset:0;background:rgba(30,30,25,.45);z-index:50;display:none;align-items:end;justify-content:center}.modal.open{display:flex}.sheet{width:min(760px,100%);background:var(--card);border-radius:30px 30px 0 0;padding:25px}.sheet input{width:100%;padding:14px;border:1px solid var(--line);border-radius:15px;margin:8px 0}.sheet .save{width:100%;margin-top:10px}
+@media(max-width:520px){.hero-art{height:225px}.greeting h1{font-size:36px}.habit-main b{font-size:19px}.hicon{width:58px;height:58px}.streak{min-width:48px}.stat-grid{gap:6px}.stat{padding:13px 5px}.stat b{font-size:25px}.bottom{width:calc(100% - 20px)}}
 </style>
 </head>
 <body>
 <div class="app">
-<header><div class="logo">little <span>habits</span> 🌱</div><button class="icon-btn" onclick="openReminders()">🔔</button></header>
+<header class="top"><div class="logo">little <span>habits</span> <span class="leaf">🌱</span></div><button class="bell" onclick="requestNotifications()">♧</button></header>
 
-<main id="home" class="view active">
-<section class="hero">
- <div class="hero-art">
-  <svg class="plant" viewBox="0 0 120 120"><path d="M55 105C54 78 54 48 61 26" stroke="#4e8b45" stroke-width="8" fill="none"/><ellipse cx="39" cy="42" rx="27" ry="14" fill="#75aa54" transform="rotate(-30 39 42)"/><ellipse cx="74" cy="29" rx="29" ry="14" fill="#91bd67" transform="rotate(-25 74 29)"/><path d="M12 100h70v10H12z" fill="#d65f49"/><ellipse cx="47" cy="100" rx="35" ry="9" fill="#e47a59"/></svg>
-  <svg class="artist" viewBox="0 0 220 240"><circle cx="111" cy="73" r="43" fill="#f3c6a7"/><path d="M65 70Q62 18 113 17Q164 18 157 74Q143 49 108 51Q84 51 65 70" fill="#333b35"/><circle cx="96" cy="75" r="4" fill="#292923"/><circle cx="127" cy="75" r="4" fill="#292923"/><path d="M101 91q11 9 22 0" stroke="#333" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M73 111Q110 92 151 112L172 220H50z" fill="#6f8d69"/><path d="M90 121q20 16 43 0" stroke="#f1d6b8" stroke-width="8" fill="none"/><path d="M150 137l33 66" stroke="#e2a77e" stroke-width="9"/><path d="M178 201l14-32" stroke="#4b83b8" stroke-width="9"/><path d="M45 210q27-50 68-39l-2 69H45z" fill="#7d9772"/></svg>
-  <svg class="cat" viewBox="0 0 100 110"><path d="M22 45L25 13 45 31Q55 25 65 31L80 12 82 50Q90 90 52 94Q13 91 22 45" fill="#f6a51a"/><circle cx="43" cy="51" r="4"/><circle cx="65" cy="51" r="4"/><path d="M49 61q6 5 12 0M52 67q-7 6-13 0M59 67q7 6 13 0" stroke="#49351d" stroke-width="2" fill="none"/><path d="M81 68q20 10 7 27" stroke="#f6a51a" stroke-width="9" fill="none"/></svg>
-  <div style="position:absolute;top:42px;right:30%;font-size:30px">✦</div>
- </div>
- <div class="hero-copy"><div class="hello">Good morning,</div><div class="name">Deepika! ✨</div><div class="sub">You've got this!</div></div>
- <div class="progress-strip"><div class="progress-row"><span>Today's progress</span><span id="homePct">0%</span></div><div id="homeCount">0 / 6 habits done</div><div class="bar"><div class="fill" id="homeFill"></div></div></div>
+<section id="home" class="page active">
+<div class="card">
+<div class="hero-art">
+<svg class="plant" width="90" height="100" viewBox="0 0 90 100"><path d="M45 92V40" stroke="#6b9b57" stroke-width="8"/><ellipse cx="29" cy="38" rx="24" ry="13" fill="#7caf55" transform="rotate(-25 29 38)"/><ellipse cx="61" cy="30" rx="24" ry="13" fill="#9acb5b" transform="rotate(-25 61 30)"/><ellipse cx="45" cy="96" rx="35" ry="8" fill="#ed765a"/></svg>
+<svg class="girl" width="190" height="230" viewBox="0 0 190 230"><circle cx="92" cy="67" r="48" fill="#f4c8a8"/><path d="M44 66Q42 8 93 10Q146 10 142 66Q123 40 94 47Q67 42 44 66" fill="#30342f"/><circle cx="76" cy="67" r="5"/><circle cx="109" cy="67" r="5"/><path d="M79 86Q93 98 108 86" fill="none" stroke="#333" stroke-width="5" stroke-linecap="round"/><path d="M54 117Q91 93 132 118L157 215H31Z" fill="#819b78"/><path d="M55 120Q91 142 128 120" fill="none" stroke="#e8d4b7" stroke-width="9"/><path d="M133 133l31 53" stroke="#e0a27e" stroke-width="12"/><path d="M163 182l10 16" stroke="#4e79a7" stroke-width="8"/></svg>
+<svg class="cat" width="90" height="110" viewBox="0 0 90 110"><path d="M18 36L25 9L43 27L65 25L78 7L82 47Q86 87 50 92Q13 88 18 36" fill="#f5a91c"/><circle cx="38" cy="50" r="4"/><circle cx="61" cy="50" r="4"/><path d="M43 62q7 7 14 0M50 61v8M50 69l-9 6M50 69l9 6" fill="none" stroke="#333" stroke-width="3" stroke-linecap="round"/><path d="M76 74q20 4 9 28" fill="none" stroke="#f5a91c" stroke-width="10"/></svg>
+</div>
+<div class="greeting"><div class="eyebrow">Good morning,</div><h1>Deepika! ✨</h1><p>You've got this!</p></div>
+<div class="progress-strip"><div class="progress-row"><span>Today's progress</span><span id="pct">0%</span></div><div id="doneText">0 / 6 habits done</div><div class="bar"><i id="progressFill"></i></div></div>
+</div>
+<div class="section-title"><h2>My habits</h2><button class="add" onclick="openHabit()">＋ Add habit</button></div>
+<div id="habitList" class="habit-list"></div>
+<div class="card mini-garden"><div class="section-title"><h2>Your little garden 🌱</h2><button class="add" onclick="go('garden')">Open</button></div><div class="garden-scene"><div class="sky"></div><div class="ground"></div><div class="soil"></div><svg class="sun" width="60" height="60"><circle cx="30" cy="30" r="20"/><g stroke="#f8b51c" stroke-width="5"><path d="M30 3v12M30 45v12M3 30h12M45 30h12"/></g></svg><svg class="plant-svg" width="90" height="100" viewBox="0 0 90 100"><path d="M45 92V45" stroke="#558a4e" stroke-width="8"/><ellipse cx="28" cy="42" rx="25" ry="14" fill="#72b94f"/><ellipse cx="60" cy="31" rx="25" ry="14" fill="#93c957"/></svg><svg class="cat-svg" width="90" height="105" viewBox="0 0 90 105"><path d="M18 37L25 8L43 27L66 24L78 8L82 49Q85 88 50 93Q14 88 18 37" fill="#f5a91c"/><circle cx="38" cy="51" r="4"/><circle cx="61" cy="51" r="4"/><path d="M43 63q7 7 14 0M50 62v8" fill="none" stroke="#333" stroke-width="3"/></svg></div><div class="garden-caption">Complete habits → earn points → grow your garden.</div></div>
 </section>
 
-<div class="section-title"><span>My habits</span><button class="primary" onclick="addHabit()">+ Add habit</button></div>
-<div id="habitList" class="card" style="padding:0;margin-top:0"></div>
+<section id="progress" class="page"><div class="panel">
+<div class="section-title"><h2>Your progress</h2><button class="bell" onclick="go('calendar')">▦</button></div>
+<div class="card" style="padding:20px;background:#e1eddc"><div style="display:flex;align-items:center;gap:20px"><svg width="110" height="110" viewBox="0 0 110 110"><path d="M55 96V43" stroke="#71a94b" stroke-width="9"/><ellipse cx="34" cy="41" rx="29" ry="16" fill="#7fbf4f"/><ellipse cx="70" cy="30" rx="30" ry="16" fill="#9acc56"/></svg><div style="background:#fff8ef;border-radius:20px;padding:18px;font-size:19px">Small steps<br>every day lead to<br>big changes. ♥</div></div></div>
+<div class="stat-grid"><div class="stat pink"><b id="longest">0</b>Longest streak</div><div class="stat yellow"><b id="weekPct">0%</b>This week</div><div class="stat lav"><b id="habitsDone">0</b>Habits done</div></div>
+<div class="card panel"><h2 style="font-size:25px">Weekly overview</h2><div id="weekChart" class="week"></div><div style="display:flex;justify-content:space-between;margin-top:20px"><div>Points<br><b id="pointsProgress" style="font:800 30px Nunito">0</b></div><div>Level<br><b id="levelProgress" style="font:800 30px Nunito">Lv. 1</b></div></div></div>
+</div></section>
 
-<div class="card"><div class="section-title" style="margin-top:0">Your little garden 🌱</div><div class="garden-preview" onclick="openGarden()">
- <div class="garden-sky"></div><div class="garden-ground"></div><div class="soil"></div>
- <svg class="sun" viewBox="0 0 80 80"><circle cx="40" cy="40" r="20" fill="#f6ad20"/><g stroke="#f6ad20" stroke-width="5"><path d="M40 4v18M40 58v18M4 40h18M58 40h18M14 14l13 13M53 53l13 13M66 14L53 27M27 53L14 66"/></g></svg>
- <svg class="sprout" viewBox="0 0 120 120"><path d="M58 108Q56 72 61 38" stroke="#4e8b45" stroke-width="9" fill="none"/><ellipse cx="37" cy="50" rx="28" ry="14" fill="#76b84e" transform="rotate(20 37 50)"/><ellipse cx="76" cy="32" rx="31" ry="15" fill="#91c85d" transform="rotate(-25 76 32)"/></svg>
- <svg class="garden-cat" viewBox="0 0 100 110"><path d="M22 45L25 13 45 31Q55 25 65 31L80 12 82 50Q90 90 52 94Q13 91 22 45" fill="#f6a51a"/><circle cx="43" cy="51" r="4"/><circle cx="65" cy="51" r="4"/><path d="M49 61q6 5 12 0" stroke="#49351d" stroke-width="2" fill="none"/></svg>
- </div><div style="padding:16px 5px 4px;color:#777">Complete habits → earn points → grow your garden.</div></div>
-</main>
+<section id="charts" class="page"><div class="panel"><div class="section-title"><h2>Charts</h2><select id="period" onchange="renderAll()" style="padding:12px 16px;border:1px solid var(--line);border-radius:18px;background:var(--card)"><option>This week</option><option>This month</option></select></div>
+<div class="card chart"><h3>Habits completion</h3><div class="donut" id="donut"></div><div class="bar-row"><span>Completed</span><div class="bar-bg"><i id="completedBar"></i></div><b id="completedNum">0</b></div><div class="bar-row"><span>Skipped</span><div class="bar-bg"><i style="background:#f2b7bd" id="skippedBar"></i></div><b id="skippedNum">0</b></div><div class="bar-row"><span>Missed</span><div class="bar-bg"><i style="background:#f4d98e" id="missedBar"></i></div><b id="missedNum">0</b></div></div>
+<div class="card chart"><h3>Habits by streak</h3><div id="streakRows"></div></div></div></section>
 
-<section id="progress" class="view">
-<div class="section-title">Your progress <button class="icon-btn" onclick="showCalendar()">▦</button></div>
-<div class="card" style="background:#e6f0df"><div style="display:flex;justify-content:space-between;align-items:center"><svg class="sprout" style="position:static;width:130px;height:110px" viewBox="0 0 120 120"><path d="M58 108Q56 72 61 38" stroke="#4e8b45" stroke-width="9" fill="none"/><ellipse cx="37" cy="50" rx="28" ry="14" fill="#76b84e" transform="rotate(20 37 50)"/><ellipse cx="76" cy="32" rx="31" ry="15" fill="#91c85d" transform="rotate(-25 76 32)"/></svg><div style="background:#fff8ed;padding:18px;border-radius:22px;max-width:220px;font-size:18px">Small steps every day lead to big changes. ❤️</div></div></div>
-<div class="stat-grid" style="margin-top:18px"><div class="stat"><b id="longest">0</b>Longest streak</div><div class="stat"><b id="weekPct">0%</b>This week</div><div class="stat"><b id="doneCount">0</b>Habits done</div></div>
-<div class="card"><h2>Weekly overview</h2><div id="weekBars" class="week"></div><div style="display:flex;justify-content:space-between;margin-top:18px"><div><small>Points</small><h2 id="points2">0</h2></div><div><small>Level</small><h2 id="level2">Lv. 1</h2></div></div></div>
-<div class="card quote"><small>Daily quote</small><div class="quote-text">“Discipline today, freedom tomorrow.”</div><div class="quote-art"><svg viewBox="0 0 180 130"><circle cx="95" cy="60" r="34" fill="#333"/><path d="M55 115q20-60 85-25" stroke="#7d9772" stroke-width="25" fill="none"/></svg></div></div>
-</section>
+<section id="calendar" class="page"><div class="panel"><div class="section-title"><h2>Calendar</h2><button class="add" onclick="today()">Today</button></div><div class="card calendar"><div class="cal-head"><button class="bell" onclick="changeMonth(-1)">‹</button><h3 id="monthTitle"></h3><button class="bell" onclick="changeMonth(1)">›</button></div><div class="cal-grid" id="calGrid"></div><div class="note"><h3 id="selectedDateTitle">Day note</h3><textarea id="dayNote" placeholder="Write a little note about today..."></textarea><button class="save" onclick="saveNote()">Save note</button></div><div style="margin-top:20px"><h3>Habits on this day</h3><div id="dayHabits"></div></div></div></div></section>
 
-<section id="charts" class="view">
-<div class="section-title">Charts <select id="range" onchange="renderAll()"><option>This week</option><option>This month</option></select></div>
-<div class="card"><h2>Habit completion</h2><div style="display:grid;place-items:center;margin:20px"><div id="donut" style="width:190px;height:190px;border-radius:50%;display:grid;place-items:center;background:conic-gradient(var(--green) 0deg,#f4dba3 0deg,#f2c6c8 0deg,#eee9df 0deg)"><div style="width:125px;height:125px;background:var(--card);border-radius:50%;display:grid;place-items:center;font-size:30px;font-weight:850" id="donutText">0%</div></div></div><div id="chartRows"></div></div>
-</section>
+<section id="quotes" class="page"><div class="panel"><h2>Daily quote</h2><div class="quote"><div>Today's little reminder</div><p id="quoteText">“Progress, not perfection.”</p><button class="save" onclick="nextQuote()">♡ Change quote</button></div></div></section>
 
-<section id="calendar" class="view">
-<div class="section-title"><span>Calendar</span><button class="primary" onclick="saveJournal()">Save note</button></div>
-<div class="card"><div class="calendar-head"><button onclick="changeMonth(-1)">‹</button><h2 id="monthTitle"></h2><button onclick="changeMonth(1)">›</button></div><div class="cal-grid" id="calGrid"></div><div class="journal"><h3 id="journalTitle">Today</h3><textarea id="journal" placeholder="Write a little note about this day…"></textarea></div></div>
-</section>
+<section id="garden" class="page"><div class="panel"><div class="section-title"><h2>My garden 🌱</h2><button class="add" onclick="go('shop')">Shop</button></div><div class="card garden-big"><div class="level-row"><span>Level <b id="gardenLevel">1</b></span><span>🪙 <b id="gardenPoints">0</b></span></div><div class="bar"><i id="gardenFill"></i></div><div class="garden-scene" style="margin-top:18px;height:300px"><div class="sky"></div><div class="ground"></div><div class="soil"></div><svg class="sun" width="60" height="60"><circle cx="30" cy="30" r="20"/><g stroke="#f8b51c" stroke-width="5"><path d="M30 3v12M30 45v12M3 30h12M45 30h12"/></g></svg><div id="gardenPlants"></div><svg class="cat-svg" width="100" height="115" viewBox="0 0 90 105"><path d="M18 37L25 8L43 27L66 24L78 8L82 49Q85 88 50 93Q14 88 18 37" fill="#f5a91c"/><circle cx="38" cy="51" r="4"/><circle cx="61" cy="51" r="4"/><path d="M43 63q7 7 14 0M50 62v8" fill="none" stroke="#333" stroke-width="3"/></svg></div><div class="garden-actions"><button onclick="gardenAction('water')">💧<br>Water</button><button onclick="gardenAction('fertilize')">🌿<br>Fertilize</button><button onclick="gardenAction('decorate')">🎀<br>Decorate</button><button onclick="go('shop')">🛒<br>Shop</button></div></div>
+<div class="card panel"><h2 style="font-size:24px">Next rewards</h2><p>🌻 Sunflower at Level 3</p><p>🌳 Tree at Level 5</p><p>🐱 Cat corner at Level 7</p></div></div></section>
 
-<section id="quotes" class="view">
-<div class="section-title">Daily quotes <button class="primary" onclick="newQuote()">↻ New</button></div>
-<div class="card quote"><small>Something for you</small><div class="quote-text" id="quoteText">“You don't need a perfect day. You just need one small win.”</div><button class="primary" onclick="saveQuote()">♡ Save quote</button></div>
-</section>
+<section id="shop" class="page"><div class="panel"><div class="section-title"><h2>Garden shop</h2><button class="add" onclick="go('garden')">Back</button></div><div class="card panel"><div style="font-weight:700">🪙 <span id="shopPoints">0</span> points</div><div class="shop-grid" id="shopGrid"></div></div></div></section>
 
-<section id="more" class="view">
-<div class="section-title"><div><small>YOUR LITTLE WORLD</small><h1 style="margin:4px 0">More</h1></div></div>
-<div class="card profile"><div class="avatar"><svg viewBox="0 0 80 80"><circle cx="40" cy="31" r="20" fill="#f1c5a5"/><path d="M20 70Q23 42 40 42Q57 42 60 70" fill="#333"/><path d="M20 32Q19 10 40 10Q61 10 60 32Q50 20 40 22Q28 20 20 32" fill="#333"/></svg></div><div><h2 style="margin:0">Deepika 🌱</h2><div style="color:#777">keep growing</div></div></div>
-<div class="card" style="padding:0;margin-top:18px"><div class="more-list" style="border:0">
-<button class="more-item" onclick="openReminders()">🔔 Reminders <span>›</span></button>
-<button class="more-item" onclick="openGarden()">🌱 Garden <span id="gardenLevel">New</span></button>
-<button class="more-item" onclick="openShop()">🛒 Garden shop <span>›</span></button>
-<button class="more-item" onclick="backup()">💾 Backup & restore <span>›</span></button>
-<button class="more-item" onclick="restoreInput.click()">♻️ Restore backup <span>›</span></button>
-<button class="more-item" onclick="toast('Themes are coming next 🌷')">🎨 Themes <span>›</span></button>
-</div></div>
-<div class="card"><h3>Little rule 🌱</h3><p style="color:#888;line-height:1.7">You don't lose your progress because you had a bad day. Start again tomorrow.</p></div>
-<input id="restoreInput" type="file" accept=".json,application/json" hidden>
-</section>
-</main>
+<section id="more" class="page"><div class="panel"><div style="font-size:15px;color:var(--muted)">YOUR LITTLE WORLD</div><h2 style="font-size:42px">More</h2><div class="card profile"><div class="avatar"><svg width="55" height="55" viewBox="0 0 55 55"><circle cx="27" cy="25" r="17" fill="#f2c7a6"/><path d="M11 24Q11 4 28 4Q45 5 44 24Q36 14 27 17Q19 14 11 24" fill="#30342f"/><path d="M9 52Q10 35 27 35Q45 35 46 52" fill="#819b78"/></svg></div><div><h2 style="font-size:28px;margin:0">Deepika 🌱</h2><div style="color:var(--muted)">keep growing</div></div></div>
+<div class="card panel" style="padding:4px 22px"><div class="more-row" onclick="openReminders()">🔔 Reminders <span>›</span></div><div class="more-row" onclick="go('garden')">🌱 Garden <span id="moreGarden">Lv. 1</span></div><div class="more-row" onclick="go('shop')">🛒 Garden shop <span>›</span></div><div class="more-row" onclick="backup()">💾 Backup & restore <span>›</span></div><div class="more-row"><label style="flex:1">🔔 Notifications</label><input id="notifyToggle" type="checkbox" onchange="toggleNotifications(this.checked)" style="width:22px;height:22px"></div><div class="more-row" onclick="document.getElementById('restoreInput').click()">♻️ Restore backup <span>›</span></div><div class="more-row">🎨 Themes <span>›</span></div></div>
+<div class="card panel"><h2 style="font-size:24px">Little rule 🌱</h2><p style="font-size:18px;color:var(--muted);line-height:1.6">You don't lose your progress because you had a bad day.<br>Start again tomorrow.</p></div></div></section>
 
 <nav class="bottom">
-<button class="nav active" data-view="home">⌂<br>Home</button><button class="nav" data-view="progress">▥<br>Progress</button><button class="nav" data-view="charts">◔<br>Charts</button><button class="nav" data-view="calendar">▦<br>Calendar</button><button class="nav" data-view="quotes">♡<br>Quotes</button><button class="nav" data-view="more">•••<br>More</button>
+<button class="nav active" data-page="home" onclick="go('home')">⌂<br>Home</button><button class="nav" data-page="progress" onclick="go('progress')">▥<br>Progress</button><button class="nav" data-page="charts" onclick="go('charts')">◔<br>Charts</button><button class="nav" data-page="calendar" onclick="go('calendar')">▦<br>Calendar</button><button class="nav" data-page="quotes" onclick="go('quotes')">♡<br>Quotes</button><button class="nav" data-page="more" onclick="go('more')">•••<br>More</button>
 </nav>
 </div>
 
-<div id="modal" class="modal" onclick="if(event.target===this)closeModal()"><div class="sheet" id="sheet"></div></div><div id="toast" class="toast"></div>
+<div class="modal" id="habitModal"><div class="sheet"><h2>Add a habit</h2><input id="newName" placeholder="Habit name"><input id="newDesc" placeholder="Short description"><button class="save" onclick="addHabit()">Add habit</button><button style="width:100%;padding:13px;background:transparent;margin-top:5px" onclick="closeHabit()">Cancel</button></div></div>
+<input type="file" id="restoreInput" accept=".json" hidden onchange="restore(this.files[0])">
 
 <script>
-const KEY='littleHabitsV2';
 const defaultHabits=[
-{id:1,name:'Sleep before 11',desc:'Good sleep, good life ✨',icon:'moon',streak:0},
-{id:2,name:'Drink water',desc:'Stay hydrated',icon:'water',streak:0},
-{id:3,name:'Study / learn',desc:'Build the future me',icon:'book',streak:0},
-{id:4,name:'LeetCode',desc:'One problem a day',icon:'code',streak:0},
-{id:5,name:'Draw / create',desc:'Create to express',icon:'palette',streak:0},
-{id:6,name:'Workout',desc:'Stronger everyday',icon:'workout',streak:0}
+{name:"Sleep before 11",desc:"Good sleep, good life",type:"moon",done:false,streak:0},
+{name:"Drink water",desc:"Stay hydrated",type:"drop",done:false,streak:0},
+{name:"Study / learn",desc:"Build the future me",type:"book",done:false,streak:0},
+{name:"LeetCode",desc:"One problem a day",type:"code",done:false,streak:0},
+{name:"Draw / create",desc:"Create to express",type:"paint",done:false,streak:0},
+{name:"Workout",desc:"Stronger everyday",type:"workout",done:false,streak:0}
 ];
-let state=JSON.parse(localStorage.getItem(KEY)||'null')||{habits:defaultHabits,days:{},points:0,level:1,notes:{},savedQuotes:[],garden:{water:0,fertilize:0,decor:0,items:[]}};
-let selectedDate=new Date(), calMonth=new Date();
+let state=JSON.parse(localStorage.getItem("littleHabits")||"null")||{date:new Date().toDateString(),habits:defaultHabits,points:0,level:1,notes:{},garden:0,quotes:0,history:{}};
+let selected=new Date(), quoteIndex=0;
+const quotes=["Progress, not perfection.","Small steps every day lead to big changes.","You don't have to be perfect to be proud.","Discipline today, freedom tomorrow.","A little better is still better."];
 
-const icon=(type)=>({moon:'<svg viewBox="0 0 50 50"><path d="M35 8A18 18 0 1 0 42 32 15 15 0 0 1 35 8Z" fill="#f6c84d"/></svg>',water:'<svg viewBox="0 0 50 50"><path d="M25 5Q9 25 9 34a16 16 0 0 0 32 0Q41 25 25 5Z" fill="#51b8e8"/></svg>',book:'<svg viewBox="0 0 50 50"><path d="M7 9h16v32H7zM27 9h16v32H27z" fill="#fff" stroke="#6f7d72" stroke-width="3"/></svg>',code:'<svg viewBox="0 0 50 50"><path d="M8 16h34v23H8z" fill="#d9e2ec"/><path d="M16 44h18" stroke="#555" stroke-width="3"/><path d="M17 26l5 4-5 4M28 26l-5 4 5 4" stroke="#7d9772" stroke-width="3" fill="none"/></svg>',palette:'<svg viewBox="0 0 50 50"><path d="M25 6Q7 7 7 25q0 16 16 16h4q4 0 4-4 0-4-4-4h-2q-4 0-4-4t6-4h4q13 0 13-10Q40 6 25 6Z" fill="#eaa1aa"/><circle cx="18" cy="20" r="3" fill="#f6c84d"/><circle cx="27" cy="15" r="3" fill="#7d9772"/></svg>',workout:'<svg viewBox="0 0 50 50"><path d="M9 21v8M15 17v16M35 17v16M41 21v8M15 25h20" stroke="#6d8c66" stroke-width="5" stroke-linecap="round"/></svg>'}[type]||'🌱');
-
-function save(){localStorage.setItem(KEY,JSON.stringify(state))}
-function todayKey(d=new Date()){return d.toISOString().slice(0,10)}
-function todayDone(){return state.days[todayKey()]||{}}
-function pointsForDone(){return Object.values(todayDone()).filter(Boolean).length}
-function level(){return Math.floor(state.points/250)+1}
-function renderHabits(){
- const done=todayDone(); document.getElementById('habitList').innerHTML=state.habits.map(h=>`<div class="habit"><div class="habit-icon">${icon(h.icon)}</div><div class="habit-main"><div class="habit-name">${h.name}</div><div class="habit-desc">${h.desc}</div></div><div class="streak">${h.streak||0}<br>day streak</div><button class="check ${done[h.id]?'done':''}" onclick="toggleHabit(${h.id})">${done[h.id]?'✓':'○'}</button></div>`).join('');
- const n=pointsForDone(), total=state.habits.length, pct=Math.round(n/total*100)||0;
- document.getElementById('homePct').textContent=pct+'%';document.getElementById('homeCount').textContent=`${n} / ${total} habits done`;document.getElementById('homeFill').style.width=pct+'%';
-}
-function toggleHabit(id){
- const key=todayKey(),d=state.days[key]||{};d[id]=!d[id];state.days[key]=d;
- if(d[id]){state.points+=20;state.habits.find(h=>h.id===id).streak++;toast('+20 points 🌱')}
- else {state.points=Math.max(0,state.points-20);state.habits.find(h=>h.id===id).streak=Math.max(0,state.habits.find(h=>h.id===id).streak-1)}
- state.level=level();save();renderAll();
-}
-function addHabit(){let n=prompt('Habit name?');if(!n)return;state.habits.push({id:Date.now(),name:n,desc:'A little step for me',icon:'sprout',streak:0});save();renderAll()}
-function renderProgress(){
- document.getElementById('points2').textContent=state.points;document.getElementById('level2').textContent='Lv. '+level();
- document.getElementById('doneCount').textContent=Object.keys(todayDone()).length;
- document.getElementById('longest').textContent=Math.max(0,...state.habits.map(h=>h.streak||0));
- const vals=[];for(let i=6;i>=0;i--){let d=new Date();d.setDate(d.getDate()-i);vals.push(Object.values(state.days[todayKey(d)]||{}).filter(Boolean).length)}
- document.getElementById('weekPct').textContent=Math.round(vals.reduce((a,b)=>a+b,0)/(7*state.habits.length)*100)||0+'%';
- document.getElementById('weekBars').innerHTML=vals.map((v,i)=>`<div class="daybar"><div class="barcol" style="height:${Math.max(8,v/state.habits.length*170)}px"></div><small>${['M','T','W','T','F','S','S'][new Date(Date.now()-(6-i)*864e5).getDay()||7-1]}</small></div>`).join('');
-}
-function renderCharts(){
- const done=pointsForDone(),pct=Math.round(done/state.habits.length*100)||0;document.getElementById('donutText').textContent=pct+'%';
- document.getElementById('donut').style.background=`conic-gradient(var(--green) ${pct*3.6}deg,#f4dba3 ${pct*3.6}deg,#f2c6c8 ${pct*3.6+45}deg,#eee9df ${pct*3.6+45}deg)`;
- document.getElementById('chartRows').innerHTML=state.habits.map(h=>{let s=h.streak||0;return `<div class="chart-row"><span>${h.name}</span><div class="mini-bar"><i style="width:${Math.min(100,s/14*100)}%"></i></div><b>${s}d</b></div>`}).join('');
-}
-function renderCalendar(){
- const y=calMonth.getFullYear(),m=calMonth.getMonth();document.getElementById('monthTitle').textContent=calMonth.toLocaleString('en',{month:'long',year:'numeric'});
- const first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate();let html='';
- for(let i=0;i<first;i++)html+='<div></div>';
- for(let day=1;day<=days;day++){let d=new Date(y,m,day),k=todayKey(d),has=Object.values(state.days[k]||{}).some(Boolean);html+=`<button class="cal-cell ${k===todayKey()?'today':''} ${has?'has':''}" onclick="selectDate('${k}')">${day}${has?'<i class="dot"></i>':''}</button>`}
- document.getElementById('calGrid').innerHTML=html;selectDate(todayKey(),false)
-}
-function selectDate(k,focus=true){selectedDate=new Date(k+'T00:00:00');document.getElementById('journalTitle').textContent=selectedDate.toLocaleDateString('en',{weekday:'long',month:'long',day:'numeric'});document.getElementById('journal').value=state.notes[k]||''}
-function saveJournal(){state.notes[todayKey(selectedDate)]=document.getElementById('journal').value;save();toast('Note saved 🌷');renderCalendar()}
-function changeMonth(n){calMonth.setMonth(calMonth.getMonth()+n);renderCalendar()}
-const quotes=['You don’t need a perfect day. You just need one small win.','Small steps still move you forward.','Make today a little kinder to future you.','Consistency is built one ordinary day at a time.','Progress, not perfection. 🌱'];
-function newQuote(){document.getElementById('quoteText').textContent='“'+quotes[Math.floor(Math.random()*quotes.length)]+'”'}
-function saveQuote(){state.savedQuotes.push(document.getElementById('quoteText').textContent);save();toast('Saved to your quotes ❤️')}
-function renderAll(){renderHabits();renderProgress();renderCharts();renderCalendar();document.getElementById('gardenLevel').textContent='Lv. '+level();document.getElementById('restoreInput').onchange=restore}
-function show(view){document.querySelectorAll('.view').forEach(x=>x.classList.remove('active'));document.getElementById(view).classList.add('active');document.querySelectorAll('.nav').forEach(x=>x.classList.toggle('active',x.dataset.view===view));scrollTo({top:0,behavior:'smooth'});renderAll()}
-document.querySelectorAll('.nav').forEach(n=>n.onclick=()=>show(n.dataset.view));
-function openModal(html){document.getElementById('sheet').innerHTML=html;document.getElementById('modal').classList.add('show')}
-function closeModal(){document.getElementById('modal').classList.remove('show')}
-function openGarden(){openModal(`<button class="close" onclick="closeModal()">×</button><h2>Your little garden 🌱</h2><div class="garden-preview"><div class="garden-sky"></div><div class="garden-ground"></div><div class="soil"></div><svg class="garden-cat" viewBox="0 0 100 110"><path d="M22 45L25 13 45 31Q55 25 65 31L80 12 82 50Q90 90 52 94Q13 91 22 45" fill="#f6a51a"/><circle cx="43" cy="51" r="4"/><circle cx="65" cy="51" r="4"/></svg></div><p><b>${state.points} points</b> available.</p><div class="garden-actions"><button onclick="gardenAction('water')">💧 Water<br><small>20 pts</small></button><button onclick="gardenAction('fertilize')">🌿 Fertilize<br><small>40 pts</small></button><button onclick="gardenAction('decor')">🎀 Decorate<br><small>60 pts</small></button></div><h3>Next rewards</h3><div class="reward">🌻 Sunflower — Level 3</div><div class="reward">🌳 Tree — Level 5</div><div class="reward">🐱 Cat corner — Level 7</div>`)}
-function gardenAction(type){let cost={water:20,fertilize:40,decor:60}[type];if(state.points<cost){toast('You need more points 🌱');return}state.points-=cost;state.garden[type]++;save();closeModal();toast(type[0].toUpperCase()+type.slice(1)+'! Your garden grew 🌿');renderAll()}
-function openShop(){openModal(`<button class="close" onclick="closeModal()">×</button><h2>Garden shop 🛒</h2><p>Spend your earned points on little things for your garden.</p><div class="shop-grid"><div class="shop-item"><div style="font-size:55px;text-align:center">🌻</div><b>Sunflower</b><p>100 points</p><button class="primary" onclick="buy(100,'Sunflower')">Buy</button></div><div class="shop-item"><div style="font-size:55px;text-align:center">🌳</div><b>Tree</b><p>180 points</p><button class="primary" onclick="buy(180,'Tree')">Buy</button></div><div class="shop-item"><div style="font-size:55px;text-align:center">🏡</div><b>Garden house</b><p>250 points</p><button class="primary" onclick="buy(250,'Garden house')">Buy</button></div><div class="shop-item"><div style="font-size:55px;text-align:center">🌷</div><b>Flower patch</b><p>80 points</p><button class="primary" onclick="buy(80,'Flower patch')">Buy</button></div></div>`)}
-function buy(cost,item){if(state.points<cost){toast('Not enough points yet 🌱');return}state.points-=cost;state.garden.items.push(item);save();closeModal();toast(item+' added to your garden!');renderAll()}
-function openReminders(){openModal(`<button class="close" onclick="closeModal()">×</button><h2>Reminders 🔔</h2><p>Browser notifications work after you grant permission.</p><button class="primary" onclick="enableNotifications()">Enable notifications</button><div style="margin-top:18px"><p>Tip: on Android, allow notifications for this site when Chrome asks.</p></div>`)}
-async function enableNotifications(){if(!('Notification'in window)){toast('Notifications are not supported here');return}let p=await Notification.requestPermission();toast(p==='granted'?'Notifications enabled 🔔':'Permission not granted')}
-function backup(){const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='little-habits-backup.json';a.click();URL.revokeObjectURL(a.href)}
-function restore(e){const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);save();renderAll();toast('Backup restored 🌱')}catch{toast('That backup file is not valid')}};r.readAsText(f)}
-function showCalendar(){show('calendar')}
-function toast(t){const x=document.getElementById('toast');x.textContent=t;x.classList.add('show');setTimeout(()=>x.classList.remove('show'),1800)}
+function save(){localStorage.setItem("littleHabits",JSON.stringify(state))}
+function dayKey(d=new Date()){return d.toISOString().slice(0,10)}
+function resetDay(){let k=dayKey();if(state.date!==new Date().toDateString()){state.habits.forEach(h=>h.done=false);state.date=new Date().toDateString();save()}}
+resetDay();
+function icon(type){const colors={moon:"#f6c849",drop:"#52b7dc",book:"#819b78",code:"#a8c0d8",paint:"#e78eaa",workout:"#6f9470"};const c=colors[type]||"#819b78";let p= type==="moon"?'<path d="M38 8A27 27 0 1 0 53 57A22 22 0 0 1 38 8" fill="'+c+'"/>':type==="drop"?'<path d="M40 7C30 24 20 34 20 47a20 20 0 0 0 40 0C60 34 50 24 40 7Z" fill="'+c+'"/>':type==="book"?'<path d="M12 12h24v38H12zM38 12h12v38H38z" fill="none" stroke="'+c+'" stroke-width="6"/>':type==="code"?'<path d="M15 15h50v36H15zM25 29l-8 8 8 8M55 29l8 8-8 8" fill="none" stroke="'+c+'" stroke-width="5"/>':type==="paint"?'<path d="M50 10C24 8 10 25 14 44c2 11 14 15 22 10 7-4 2-12 11-12 12 0 22-10 22-20 0-7-6-11-19-12Z" fill="'+c+'"/><circle cx="50" cy="22" r="3" fill="#fff"/>': '<path d="M15 34h50M23 20v28M35 15v38M50 18v34M62 22v28" stroke="'+c+'" stroke-width="6" stroke-linecap="round"/>';return `<svg viewBox="0 0 80 80">${p}</svg>`}
+function renderHabits(){let list=document.getElementById("habitList");list.innerHTML=state.habits.map((h,i)=>`<div class="habit"><div class="hicon">${icon(h.type)}</div><div class="habit-main"><b>${esc(h.name)}</b><small>${esc(h.desc)}</small></div><div class="streak"><strong>${h.streak||0}</strong>day streak</div><button class="check ${h.done?"done":""}" onclick="toggleHabit(${i})">${h.done?"✓":"○"}</button></div>`).join("");let done=state.habits.filter(h=>h.done).length,p=Math.round(done/state.habits.length*100);document.getElementById("pct").textContent=p+"%";document.getElementById("doneText").textContent=`${done} / ${state.habits.length} habits done`;document.getElementById("progressFill").style.width=p+"%"}
+function toggleHabit(i){let h=state.habits[i];h.done=!h.done;if(h.done){h.streak++;state.points+=10;state.garden++;state.history[dayKey()]={...(state.history[dayKey()]||{}),[h.name]:true}}else{h.streak=Math.max(0,h.streak-1);state.points=Math.max(0,state.points-10);if(state.history[dayKey()])delete state.history[dayKey()][h.name]}state.level=Math.floor(state.points/100)+1;save();renderAll()}
+function addHabit(){let n=document.getElementById("newName").value.trim();if(!n)return;state.habits.push({name:n,desc:document.getElementById("newDesc").value.trim()||"One small step",type:"book",done:false,streak:0});save();closeHabit();renderAll()}
+function openHabit(){document.getElementById("habitModal").classList.add("open")}function closeHabit(){document.getElementById("habitModal").classList.remove("open")}
+function go(id){document.querySelectorAll(".page").forEach(x=>x.classList.remove("active"));document.getElementById(id).classList.add("active");document.querySelectorAll(".nav").forEach(x=>x.classList.toggle("active",x.dataset.page===id));window.scrollTo(0,0);renderAll()}
+function renderProgress(){document.getElementById("longest").textContent=Math.max(0,...state.habits.map(h=>h.streak));document.getElementById("habitsDone").textContent=Object.values(state.history).reduce((a,d)=>a+Object.keys(d||{}).length,0);document.getElementById("weekPct").textContent=Math.round(state.habits.filter(h=>h.done).length/state.habits.length*100)+"%";document.getElementById("pointsProgress").textContent=state.points;document.getElementById("levelProgress").textContent="Lv. "+state.level;let w=document.getElementById("weekChart");w.innerHTML=["M","T","W","T","F","S","S"].map((d,i)=>`<div class="daybar"><i style="height:${Math.max(4,((i===6?state.habits.filter(h=>h.done).length:Math.max(0,i-2))*15))}px"></i>${d}</div>`).join("")}
+function renderCharts(){let done=state.habits.filter(h=>h.done).length,total=state.habits.length;document.getElementById("donut").style.background=`conic-gradient(var(--green) 0 ${Math.max(5,done/total*100)}%,#f4d98e ${Math.max(5,done/total*100)}% 88%,#f2b7bd 88% 100%)`;document.getElementById("completedNum").textContent=done;document.getElementById("completedBar").style.width=(done/total*100)+"%";document.getElementById("skippedNum").textContent=0;document.getElementById("missedNum").textContent=Math.max(0,total-done);document.getElementById("streakRows").innerHTML=state.habits.map(h=>`<div class="bar-row"><span>${esc(h.name)}</span><div class="bar-bg"><i style="width:${Math.min(100,(h.streak||0)*10)}%"></i></div><b>${h.streak||0}d</b></div>`).join("")}
+function renderCalendar(){let y=selected.getFullYear(),m=selected.getMonth();document.getElementById("monthTitle").textContent=selected.toLocaleString("en",{month:"long",year:"numeric"});let first=new Date(y,m,1).getDay(),days=new Date(y,m+1,0).getDate(),g=document.getElementById("calGrid");g.innerHTML=["S","M","T","W","T","F","S"].map(x=>`<div style="text-align:center;color:var(--muted);font-size:12px">${x}</div>`).join("");for(let i=0;i<first;i++)g.innerHTML+="<div></div>";for(let d=1;d<=days;d++){let date=new Date(y,m,d),k=dayKey(date);g.innerHTML+=`<button class="${k===dayKey(selected)?"selected ":""}${state.notes[k]?"has":""}" onclick="selectDate(${d})">${d}</button>`}let k=dayKey(selected);document.getElementById("selectedDateTitle").textContent=selected.toLocaleDateString("en",{weekday:"long",month:"long",day:"numeric"});document.getElementById("dayNote").value=state.notes[k]||"";let h=state.history[k]||{};document.getElementById("dayHabits").innerHTML=state.habits.map(x=>`<div style="padding:10px 0;border-bottom:1px solid var(--line)">${h[x.name]?"✓ ":"○ "}${esc(x.name)}</div>`).join("")}
+function selectDate(d){selected=new Date(selected.getFullYear(),selected.getMonth(),d);renderCalendar()}function changeMonth(n){selected=new Date(selected.getFullYear(),selected.getMonth()+n,1);renderCalendar()}function today(){selected=new Date();renderCalendar()}function saveNote(){state.notes[dayKey(selected)]=document.getElementById("dayNote").value;save();renderCalendar()}
+function nextQuote(){quoteIndex=(quoteIndex+1)%quotes.length;document.getElementById("quoteText").textContent="“"+quotes[quoteIndex]+"”"}
+function renderGarden(){document.getElementById("gardenPoints").textContent=state.points;document.getElementById("shopPoints").textContent=state.points;document.getElementById("gardenLevel").textContent=state.level;document.getElementById("moreGarden").textContent="Lv. "+state.level;document.getElementById("gardenFill").style.width=(state.points%100)+"%";let p=Math.min(6,Math.floor(state.points/100));document.getElementById("gardenPlants").innerHTML=Array.from({length:p},(_,i)=>`<div style="position:absolute;left:${12+i*12}%;bottom:${35+(i%2)*10}px;font-size:${28+i*2}px">🌱</div>`).join("")}
+const shop=[["Carrot",20,"🥕"],["Strawberry",30,"🍓"],["Sunflower",40,"🌻"],["Lavender",35,"🪻"],["Blueberry",45,"🫐"],["Tulip",30,"🌷"]];
+function renderShop(){document.getElementById("shopGrid").innerHTML=shop.map((x,i)=>`<div class="shop-item"><div style="font-size:34px">${x[2]}</div><b>${x[0]}</b><div>🪙 ${x[1]}</div><button onclick="buy(${i})">Buy</button></div>`).join("")}
+function buy(i){if(state.points<shop[i][1])return alert("Not enough points yet 🌱");state.points-=shop[i][1];state.garden++;save();renderAll()}
+function gardenAction(a){if(a==="water")state.garden++;else if(a==="fertilize"&&state.points>=5){state.points-=5;state.garden+=2}else if(a==="decorate"&&state.points>=10){state.points-=10;state.garden+=3}else return;save();renderAll();alert("Your garden is growing! 🌱")}
+function backup(){let blob=new Blob([JSON.stringify(state,null,2)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="little-habits-backup.json";a.click()}
+function restore(file){let r=new FileReader();r.onload=()=>{try{state=JSON.parse(r.result);save();renderAll();alert("Backup restored!")}catch(e){alert("That backup file isn't valid.")}};r.readAsText(file)}
+async function requestNotifications(){if(!("Notification"in window))return alert("Notifications aren't supported in this browser.");let p=await Notification.requestPermission();if(p==="granted"){new Notification("Little Habits",{body:"You're doing great. One little step today. 🌱"});localStorage.setItem("notifications","on")}}
+function toggleNotifications(v){if(v)requestNotifications();else localStorage.setItem("notifications","off")}
+function openReminders(){requestNotifications();alert("Browser notifications are enabled when permission is granted. For scheduled reminders, keep this site installed as a PWA and allow notifications in browser settings.")}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+function renderAll(){renderHabits();renderProgress();renderCharts();renderCalendar();renderGarden();renderShop();document.getElementById("notifyToggle").checked=localStorage.getItem("notifications")==="on"}
 renderAll();
-if('serviceWorker'in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
-</body></html>
+</body>
+</html>

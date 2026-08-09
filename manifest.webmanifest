@@ -1,9 +1,9 @@
 {
   "name":"Little Habits",
   "short_name":"Little Habits",
-  "start_url":".",
+  "start_url":"/",
   "display":"standalone",
   "background_color":"#f7f1e7",
-  "theme_color":"#7d9772",
+  "theme_color":"#819b78",
   "icons":[]
 }
